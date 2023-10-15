@@ -35,4 +35,18 @@ public class Caminhao {
     public void setCapacidadeMaxima(double capacidadeMaxima) {
         this.capacidadeMaxima = capacidadeMaxima;
     }
+
+    //Método que deixa o usuário escolher um ônibus
+    public static Caminhao selecionarCaminhao(String tipo) {
+        switch (tipo.toLowerCase()) {
+            case "pequeno":
+                return new Caminhao("Pequeno", 5.83, 1);
+            case "médio":
+                return new Caminhao("Médio", 13.42, 4);
+            case "grande":
+                return new Caminhao("Grande", 29.21, 10);
+            default:
+                throw new IllegalArgumentException("Tipo de caminhão inválido: " + tipo);
+        }
+    }
 }

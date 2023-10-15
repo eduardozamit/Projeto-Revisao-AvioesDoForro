@@ -4,41 +4,44 @@ import main.java.model.Caminhao;
 import main.java.model.Cidade;
 import main.java.model.Produto;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Transporte {
-    static Scanner scanner = new Scanner(System.in);
 
-    public static void consultarTrechosModalidades() {
-        System.out.print("Digite a cidade de origem: ");
-        String cidadeOrigem = scanner.nextLine();
-        System.out.print("Digite a cidade de Destino: ");
-        String cidadeDestino = scanner.nextLine();
-        System.out.print("Digite o caminhão desejado: ");
-        String caminhaoEscolhido = scanner.nextLine();
-        //calcularDistancia(String cidadeOrigem, String cidadeDestino);
-        //calcularCustoTotal(double distancia, Caminhao caminhaoEscolhido)
+   //Retorna a distância entre duas cidades
+   private static int calcularDistancia(String cidadeOrigem, String cidadeDestino) {
+      try (BufferedReader br = new BufferedReader(new FileReader("DistanciasCidadesCSV.csv"))) {
+         String line;
+         String[] cidades = br.readLine().split(";");
+         int indexCidadeOrigem = -1;
+         int indexCidadeDestino = -1;
 
-        System.out.println("A distância é de: " + "Km, e o custo será de R$: " );
-    }
+         //Neste trecho, é percorrida a matriz de cidades para encontrar os índices das cidades de origem e destino especificadas.
+         for (int i = 0; i < cidades.length; i++) {
+            if (cidades[i].equals(cidadeOrigem)) {
+               indexCidadeOrigem = i;
+            }
+            if (cidades[i].equals(cidadeDestino)) {
+               indexCidadeDestino = i;
+            }
+         }
 
-
-
-
-    //Métodos para serem usados em métodos
-    public double calcularDistancia(Cidade origem, Cidade destino) {
-        //Criar lógica para calcular a distância entre duas cidades
-        return 0.0; //Substituir pelo retorno da distância entre as cidades
-    }
-
-    public Caminhao selecionarCaminhao(List<Produto> produtos) {
-        //Criar lógica para selecionar o caminhão mais adequado com base nos produtos a serem transportados
-        return null; //Substituir pelo retorno do caminhão mais adequado para transportar a lista de produtos
-    }
-
-    public double calcularCustoTotal(double distancia, Caminhao caminhao) {
-        //Criar lógica para calcular o custo total com base na distância e caminhão
-        return 0.0; //Substituir pelo retorno do custo total
-    }
+         //Se os índices das cidades de origem e destino forem encontrados, o programa percorre o arquivo até a linha correspondente à cidade de origem e retorna a distância correspondente.
+         if (indexCidadeOrigem != -1 && indexCidadeDestino != -1) {
+            for (int i = 0; (line = br.readLine()) != null; i++) {
+               if (i == indexCidadeOrigem) {
+                  String[] valores = line.split(";");
+                  return Integer.parseInt(valores[indexCidadeDestino]);
+               }
+            }
+         }
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return -1; // Retorna -1 se não encontrar a distância
+   }
 }
