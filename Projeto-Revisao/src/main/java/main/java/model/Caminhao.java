@@ -8,10 +8,13 @@ public class Caminhao {
     private double precoPorKm;
     private double capacidadeMaxima;
 
-    public Caminhao(String tipo, double precoPorKm, double capacidadeMaxima) {
+    private int ateOndeVale;
+
+    public Caminhao(String tipo, double precoPorKm, double capacidadeMaxima, int ateOndeVale) {
         this.tipo = tipo;
         this.precoPorKm = precoPorKm;
         this.capacidadeMaxima = capacidadeMaxima;
+        this.ateOndeVale = ateOndeVale;
     }
 
     // Métodos getters e setters para acessar e modificar os atributos
@@ -45,11 +48,11 @@ public class Caminhao {
         collator.setStrength(Collator.PRIMARY);
 
         if (collator.equals(tipo, "pequeno")) {
-            return new Caminhao("Pequeno", 5.83, 1);
+            return new Caminhao("Pequeno", 5.83, 1, 0);
         } else if (collator.equals(tipo, "médio")) {
-            return new Caminhao("Médio", 13.42, 4);
+            return new Caminhao("Médio", 13.42, 4, 2);
         } else if (collator.equals(tipo, "grande")) {
-            return new Caminhao("Grande", 29.21, 10);
+            return new Caminhao("Grande", 29.21, 10, 8);
         } else throw new IllegalArgumentException("Tipo de caminhão inválido: " + tipo);
     }
 }
