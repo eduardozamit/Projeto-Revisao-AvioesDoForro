@@ -7,13 +7,14 @@ import main.java.model.Produto;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Transporte {
 
    //Retorna a distância entre duas cidades
-   private static int calcularDistancia(String cidadeOrigem, String cidadeDestino) {
+   public static int calcularDistancia(String cidadeOrigem, String cidadeDestino) {
       try (BufferedReader br = new BufferedReader(new FileReader("DistanciasCidadesCSV.csv"))) {
          String line;
          String[] cidades = br.readLine().split(";");
@@ -43,5 +44,31 @@ public class Transporte {
          e.printStackTrace();
       }
       return -1; // Retorna -1 se não encontrar a distância
+   }
+
+   //Retorna a lista de cidades existentes
+   public static void listarCidades() {
+      try (BufferedReader br = new BufferedReader(new FileReader("DistanciasCidadesCSV.csv"))) {
+         String line;
+         if ((line = br.readLine()) != null) {
+            String[] cidades = line.split(";");
+            for (String cidade : cidades) {
+               System.out.println(cidade);
+            }
+         }
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
+
+   // Método para verificar se a cidade existe na lista de cidades
+   public static boolean cidadeExiste(String cidade) {
+      List<Cidade> cidades = Cidade.obterListaDeCidadesDoCSV("DistanciasCidadesCSV.csv");
+      for (Cidade c : cidades) {
+         if (c.getNome().equalsIgnoreCase(cidade)) {
+            return true;
+         }
+      }
+      return false;
    }
 }
