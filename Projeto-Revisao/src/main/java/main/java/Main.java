@@ -1,6 +1,6 @@
 package main.java;
 
-import main.java.services.ConsultarTrajetos;
+import main.java.services.*
 
 import java.util.Scanner;
 public class Main {
@@ -29,7 +29,7 @@ public class Main {
                         break;
                     case 3:
                         System.out.println("-------- Você Selecionou a opção 3 --------");
-                        //gerarRelatorio();
+                        GeraRelatorio.listarDados();
                         break;
                     case 0:
                         System.out.println("Vazando do programa...");
