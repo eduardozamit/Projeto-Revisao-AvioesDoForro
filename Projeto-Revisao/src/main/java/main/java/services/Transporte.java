@@ -1,15 +1,11 @@
 package main.java.services;
 
-import main.java.model.Caminhao;
 import main.java.model.Cidade;
-import main.java.model.Produto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Transporte {
 

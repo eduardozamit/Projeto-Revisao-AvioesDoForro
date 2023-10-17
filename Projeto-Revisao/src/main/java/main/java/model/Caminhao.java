@@ -46,8 +46,8 @@ public class Caminhao {
 
         if (collator.equals(tipo, "pequeno")) {
             return new Caminhao("Pequeno", 5.83, 1);
-        } else if (collator.equals(tipo, "médio")) {
-            return new Caminhao("Médio", 13.42, 4);
+        } else if (collator.equals(tipo, "medio")) {
+            return new Caminhao("Medio", 13.42, 4);
         } else if (collator.equals(tipo, "grande")) {
             return new Caminhao("Grande", 29.21, 10);
         } else throw new IllegalArgumentException("Tipo de caminhão inválido: " + tipo);
