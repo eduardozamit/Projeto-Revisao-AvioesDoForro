@@ -14,6 +14,8 @@ public class Caminhao {
         this.capacidadeMaxima = capacidadeMaxima;
     }
 
+
+
     // Métodos getters e setters para acessar e modificar os atributos
     public String getTipo() {
         return tipo;
