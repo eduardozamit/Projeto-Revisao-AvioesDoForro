@@ -1,58 +1,34 @@
 package main.java.model;
-
 import java.text.Collator;
+import java.util.Arrays;
 import java.util.Locale;
 
 public class Caminhao {
-    private String tipo;
-    private double precoPorKm;
-    private double capacidadeMaxima;
+    Object[][] informacoes = {
+            {"Classificação", "Preço por Km (R$/km)", "Capacidade Máxima", "Vale a Pena"},
+            {"Grande",        29.21,                  10,                   8},
+            {"Médio",         13.42,                  4,                    2},
+            {"Pequeno",       5.83,                   1,                    0}
 
-    private int ateOndeVale;
+    };
 
-    public Caminhao(String tipo, double precoPorKm, double capacidadeMaxima, int ateOndeVale) {
-        this.tipo = tipo;
-        this.precoPorKm = precoPorKm;
-        this.capacidadeMaxima = capacidadeMaxima;
-        this.ateOndeVale = ateOndeVale;
+    Object[][] lista={
+            {"Tipo","Preco por Km"},
+    };
+
+    public void escolherCaminhao(int carga){
+        int index = 1;
+        while(carga>0){
+            int contadorLista = 1;
+            while(carga>(int)informacoes[index][3]){
+                carga = carga-(int)informacoes[index][2];
+                lista[contadorLista][0]= (String)informacoes[index][0];
+                lista[contadorLista][1]= (double)informacoes[index][1];
+                contadorLista++;
+            }
+            index++;
+        }
+        System.out.println(Arrays.deepToString(lista));
     }
 
-    // Métodos getters e setters para acessar e modificar os atributos
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public double getPrecoPorKm() {
-        return precoPorKm;
-    }
-
-    public void setPrecoPorKm(double precoPorKm) {
-        this.precoPorKm = precoPorKm;
-    }
-
-    public double getCapacidadeMaxima() {
-        return capacidadeMaxima;
-    }
-
-    public void setCapacidadeMaxima(double capacidadeMaxima) {
-        this.capacidadeMaxima = capacidadeMaxima;
-    }
-
-    //Método que deixa o usuário escolher um ônibus
-    public static Caminhao selecionarCaminhao(String tipo) {
-        Collator collator = Collator.getInstance(new Locale("pt", "BR"));
-        collator.setStrength(Collator.PRIMARY);
-
-        if (collator.equals(tipo, "pequeno")) {
-            return new Caminhao("Pequeno", 5.83, 1, 0);
-        } else if (collator.equals(tipo, "médio")) {
-            return new Caminhao("Médio", 13.42, 4, 2);
-        } else if (collator.equals(tipo, "grande")) {
-            return new Caminhao("Grande", 29.21, 10, 8);
-        } else throw new IllegalArgumentException("Tipo de caminhão inválido: " + tipo);
-    }
 }
