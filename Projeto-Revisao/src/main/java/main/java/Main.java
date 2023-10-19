@@ -1,11 +1,15 @@
 package main.java;
 
+import main.java.services.CadastroTransporte;
 import main.java.services.ConsultarTrajetos;
+import main.java.services.ListaItens;
 
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        CadastroTransporte ct = new CadastroTransporte();
+        ListaItens li = new ListaItens();
         int opcao = -1;
 
         while (opcao != 0) {
@@ -14,10 +18,12 @@ public class Main {
                          Opção: 1 - Consultar Trechos e Modalidades\s
                          Opção: 2 - Cadastrar transporte\s
                          Opção: 3 - Consultar dados estatísticos\s
+                         Opção: 4 - Consultar quantidade de caminhões\s
+                         Opção: 5 - Cadastrar carga\s
                          Opção: 0 - Finalizar programa\s
                          ---------------------------------------------\
                         """);
-                opcao = scanner.nextInt();
+                opcao = sc.nextInt();
                 switch (opcao) {
                     case 1:
                         System.out.println("-------- Você Selecionou a opção 1 --------");
@@ -31,6 +37,14 @@ public class Main {
                         System.out.println("-------- Você Selecionou a opção 3 --------");
                         //gerarRelatorio();
                         break;
+                    case 4:
+                        System.out.println("-------- Você Selecionou a opção 4 --------");
+                        System.out.println("Qual o peso da carga total?");
+                        int peso = sc.nextInt();
+                        ct.ListarCaminhoes(peso);
+                    case 5:
+                        System.out.println("-------- Você Selecionou a opção 5 --------");
+                        li.menuListas();
                     case 0:
                         System.out.println("Vazando do programa...");
                         break;
@@ -38,6 +52,6 @@ public class Main {
                         System.out.println("Opção invalida amigão, tente novamente!");
                 }
         }
-        scanner.close();
+        sc.close();
     }
 }

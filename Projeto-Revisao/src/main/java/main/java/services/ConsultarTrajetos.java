@@ -34,7 +34,7 @@ public class ConsultarTrajetos extends Transporte {
             if (!tipoDeCaminhao.equalsIgnoreCase("pequeno") && !tipoDeCaminhao.equalsIgnoreCase("médio") && !tipoDeCaminhao.equalsIgnoreCase("grande")) {
                 System.out.println("Opção de caminhão inválida. Por favor, digite uma opção válida.");
             }
-        }while (!tipoDeCaminhao.equalsIgnoreCase("pequeno") && !tipoDeCaminhao.equalsIgnoreCase("médio") && !tipoDeCaminhao.equalsIgnoreCase("grande"));
+        } while (!tipoDeCaminhao.equalsIgnoreCase("pequeno") && !tipoDeCaminhao.equalsIgnoreCase("médio") && !tipoDeCaminhao.equalsIgnoreCase("grande"));
         Caminhao caminhao = Caminhao.selecionarCaminhao(tipoDeCaminhao.toLowerCase());
 
 
